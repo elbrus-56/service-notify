@@ -1,0 +1,26 @@
+{% extends "admin/base_site.html" %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs"><a href="{% url 'home' %}">Home</a></div>
+{% endblock %}
+
+
+{% block content %}
+
+User: {{ user }}
+<br>
+<br>
+
+<h1>Register</h1>
+
+    {% if form.errors %}
+        <p>{{ form.errors.error }}</p>
+    {% endif %}
+
+    <form action="{% url 'register' %}" method="post">
+        {{ form }}
+        {% csrf_token %}
+        <button type="submit">Submit</button>
+    </form>
+
+{% endblock content %}
