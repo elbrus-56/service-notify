@@ -125,10 +125,6 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-AUTH_USER_MODEL = 'notify.User'
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
-
 # Celery settings
 CELERY_BROKER_URL = "redis://localhost:6385"
 CELERY_RESULT_BACKEND = "redis://localhost:6385"

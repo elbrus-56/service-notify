@@ -9,7 +9,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
 django.setup()
 
 from django.test import TestCase
-from notify.models import User
+from django.contrib.auth.models import User
 from notify.tasks import send_code_for_verify_email_task, \
     send_notify_of_success_registration_task, \
     send_notify_of_unsuccess_registration_task, \

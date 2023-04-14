@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ac15e6e3-ea4a-4de4-bbae-e869cbdfe319" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/notify_2.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notify/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/notify/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notify/config/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/notify/config/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notify/config/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/notify/config/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notify/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notify/dump.rdb" beforeDir="false" afterPath="$PROJECT_DIR$/notify/dump.rdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notify/notify/forms.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notify/notify/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notify/notify/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/notify/notify/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notify/notify/tests/test_notify.py" beforeDir="false" afterPath="$PROJECT_DIR$/notify/notify/tests/test_notify.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notify/notify/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notify/notify/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/notify/notify/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notify/templates/notify/base.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notify/templates/notify/home.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notify/templates/registration/confirm_email.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notify/templates/registration/invalid_verify.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notify/templates/registration/logged_out.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notify/templates/registration/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notify/templates/registration/password_change_done.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notify/templates/registration/password_change_form.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notify/templates/registration/password_reset_complete.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notify/templates/registration/password_reset_confirm.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notify/templates/registration/password_reset_done.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notify/templates/registration/password_reset_email.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notify/templates/registration/password_reset_form.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notify/templates/registration/register.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notify/templates/registration/verify_email.html" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2OMYW9YdttvALFtM0g86heZKuEA" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/home/ubuntu/PycharmProjects/service_MK/notify_project/notify/notify/tests"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="Python tests in tests" type="tests" factoryName="Autodetect" nameIsGenerated="true">
+      <module name="notify_project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/notify" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/notify/notify/tests&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ac15e6e3-ea4a-4de4-bbae-e869cbdfe319" name="Changes" comment="" />
+      <created>1681371947850</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1681371947850</updated>
+    </task>
+    <servers />
+  </component>
+</project>
