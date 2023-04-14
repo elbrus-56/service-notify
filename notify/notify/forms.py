@@ -2,8 +2,10 @@ from django.contrib.auth import authenticate, get_user_model
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, PasswordResetForm
 from django.core.exceptions import ValidationError
 from django import forms
+from django.template import loader
 from django.utils.translation import gettext_lazy as _
-from notify.notify import Notify
+from notify.tasks import send_code_for_verify_email_task, send_notify_of_login_task, send_password_reset_code_task, \
+    send_notify_of_unfinished_registration_task
 
 User = get_user_model()
 
@@ -22,9 +24,10 @@ class MyAuthenticationForm(AuthenticationForm):
             )
 
             if not self.user_cache.email_verify:
-                Notify.send_code_for_verify_email(
-                    request=self.request,
-                    user=self.user_cache
+
+                send_notify_of_unfinished_registration_task.delay(
+                    username=self.user_cache.username,
+                    to_email=self.user_cache.email
                 )
                 raise ValidationError(
                     "Email not verify! Check your email",
@@ -36,7 +39,7 @@ class MyAuthenticationForm(AuthenticationForm):
             else:
                 self.confirm_login_allowed(self.user_cache)
 
-                Notify.send_notification_about_login(
+                send_notify_of_login_task.delay(
                     username=self.user_cache.username,
                     to_email=self.user_cache.email
                 )
@@ -67,8 +70,16 @@ class MyPasswordResetForm(PasswordResetForm):
             to_email,
             html_email_template_name=None,
     ):
-        args = (subject_template_name, email_template_name, context,
-                from_email, to_email, html_email_template_name)
 
-        Notify.send_password_reset_code(*args)
+        # меняем объект модели на конкретное значение для сериализации в json celery
+        user = context['user']
+        context['user'] = user.username
+
+        subject = loader.render_to_string(subject_template_name, context)
+        subject = "".join(subject.splitlines())
+
+        body = loader.render_to_string(email_template_name, context)
+
+        send_password_reset_code_task.delay(subject, body, from_email, to_email,
+                                            context, html_email_template_name)
 

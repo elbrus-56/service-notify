@@ -2,18 +2,24 @@ from django.contrib.auth import authenticate, login, get_user_model
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth.views import LoginView, PasswordResetView, \
     PasswordResetConfirmView
+from django.contrib.sites.shortcuts import get_current_site
 from django.core.exceptions import ValidationError, ImproperlyConfigured
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect, resolve_url
+from django.shortcuts import render, redirect
+from django.template.loader import render_to_string
 from django.utils.decorators import method_decorator
-from django.utils.http import urlsafe_base64_decode
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.views import View
 from django.views.decorators.cache import never_cache
 from django.views.decorators.debug import sensitive_post_parameters
 
 from notify.forms import MyAuthenticationForm, MyUserCreationForm, \
     MyPasswordResetForm
-from notify.notify import Notify
+
+from notify.tasks import send_code_for_verify_email_task, send_notify_of_success_registration_task, \
+    send_notify_of_unsuccess_registration_task, send_notify_of_success_password_reset_task, \
+    send_notify_of_unsuccess_password_reset_task
 
 User = get_user_model()
 
@@ -41,7 +47,21 @@ class RegisterView(View):
             password = form.cleaned_data.get("password1")
             user = authenticate(email=email, password=password)
 
-            Notify.send_code_for_verify_email(request, user)
+            current_site = get_current_site(request)
+
+            context = {
+                'user': user.username,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                'token': default_token_generator.make_token(user),
+            }
+
+            message = render_to_string(
+                "registration/verify_email.html",
+                context=context,
+            )
+
+            send_code_for_verify_email_task.delay(message, email)
 
             return redirect('confirm_email')
 
@@ -60,14 +80,14 @@ class VerifyEmailView(View):
             user.save()
             login(request, user)
 
-            Notify.send_notification_for_success_registration(
+            send_notify_of_success_registration_task.delay(
                 username=user.username,
                 to_email=user.email
             )
 
             return redirect("home")
 
-        Notify.send_notification_for_unsuccess_registration(
+        send_notify_of_unsuccess_registration_task.delay(
             username=user.username,
             to_email=user.email
         )
@@ -128,11 +148,11 @@ class MyPasswordResetConfirmView(PasswordResetConfirmView):
                     redirect_url = self.request.path.replace(
                         token, self.reset_url_token
                     )
-                    Notify.send_notification_success_password_reset(self.user.username, self.user.email)
+                    send_notify_of_success_password_reset_task.delay(self.user.username, self.user.email)
                     return HttpResponseRedirect(redirect_url)
 
         # Display the "Password reset unsuccessful" page.
-        Notify.send_notification_unsuccess_password_reset(self.user.username, self.user.email)
+        send_notify_of_unsuccess_password_reset_task.delay(self.user.username, self.user.email)
         return self.render_to_response(self.get_context_data())
 
     def get_user(self, uidb64):

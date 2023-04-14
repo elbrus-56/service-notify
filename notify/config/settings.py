@@ -132,7 +132,7 @@ LOGOUT_REDIRECT_URL = '/'
 # Celery settings
 CELERY_BROKER_URL = "redis://localhost:6385"
 CELERY_RESULT_BACKEND = "redis://localhost:6385"
-CELERY_IMPORTS = ('notify.task',)
+CELERY_IMPORTS = ('notify.tasks',)
 CELERY_ACCEPT_CONTENT = ["application/json"]
 CELERY_TASK_SERIALIZER = "json"
 CELERY_RESULT_SERIALIZER = "json"
